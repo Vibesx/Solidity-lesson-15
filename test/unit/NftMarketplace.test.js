@@ -2,6 +2,7 @@ const { assert, expect } = require("chai");
 const { network, deployments, ethers } = require("hardhat");
 const { developmentChains } = require("../../helper-hardhat-config");
 
+// TODO: Write more tests
 !developmentChains.includes(network.name)
 	? describe.skip
 	: describe("Nft Marketplace Unit Tests", function () {
