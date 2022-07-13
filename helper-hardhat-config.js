@@ -38,6 +38,6 @@ module.exports = {
 	VERIFICATION_BLOCK_CONFIRMATIONS,
 	frontEndContractsFile,
 	//frontEndContractsFile2,
-	//frontEndAbiLocation,
+	frontEndAbiLocation,
 	//frontEndAbiLocation2,
 };

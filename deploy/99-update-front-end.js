@@ -1,7 +1,7 @@
 const {
 	frontEndContractsFile,
 	//frontEndContractsFile2,
-	//frontEndAbiLocation,
+	frontEndAbiLocation,
 	//frontEndAbiLocation2,
 } = require("../helper-hardhat-config");
 require("dotenv").config();
@@ -12,32 +12,32 @@ module.exports = async () => {
 	if (process.env.UPDATE_FRONTEND) {
 		console.log("Writing to front end...");
 		await updateContractAddresses();
-		//await updateAbi();
+		await updateAbi();
 		console.log("Front end written!");
 	}
 };
 
-// async function updateAbi() {
-// 	const nftMarketplace = await ethers.getContract("NftMarketplace");
-// 	fs.writeFileSync(
-// 		`${frontEndAbiLocation}NftMarketplace.json`,
-// 		nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
-// 	);
-// 	fs.writeFileSync(
-// 		`${frontEndAbiLocation2}NftMarketplace.json`,
-// 		nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
-// 	);
+async function updateAbi() {
+	const nftMarketplace = await ethers.getContract("NftMarketplace");
+	fs.writeFileSync(
+		`${frontEndAbiLocation}NftMarketplace.json`,
+		nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
+	);
+	// fs.writeFileSync(
+	// 	`${frontEndAbiLocation2}NftMarketplace.json`,
+	// 	nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
+	// );
 
-// 	const basicNft = await ethers.getContract("BasicNft");
-// 	fs.writeFileSync(
-// 		`${frontEndAbiLocation}BasicNft.json`,
-// 		basicNft.interface.format(ethers.utils.FormatTypes.json)
-// 	);
-// 	fs.writeFileSync(
-// 		`${frontEndAbiLocation2}BasicNft.json`,
-// 		basicNft.interface.format(ethers.utils.FormatTypes.json)
-// 	);
-// }
+	const basicNft = await ethers.getContract("BasicNft");
+	fs.writeFileSync(
+		`${frontEndAbiLocation}BasicNft.json`,
+		basicNft.interface.format(ethers.utils.FormatTypes.json)
+	);
+	// fs.writeFileSync(
+	// 	`${frontEndAbiLocation2}BasicNft.json`,
+	// 	basicNft.interface.format(ethers.utils.FormatTypes.json)
+	// );
+}
 
 async function updateContractAddresses() {
 	const chainId = network.config.chainId.toString();
