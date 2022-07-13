@@ -1,8 +1,8 @@
 const {
 	frontEndContractsFile,
-	//frontEndContractsFile2,
+	frontEndContractsFile2,
 	frontEndAbiLocation,
-	//frontEndAbiLocation2,
+	frontEndAbiLocation2,
 } = require("../helper-hardhat-config");
 require("dotenv").config();
 const fs = require("fs");
@@ -23,20 +23,20 @@ async function updateAbi() {
 		`${frontEndAbiLocation}NftMarketplace.json`,
 		nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
 	);
-	// fs.writeFileSync(
-	// 	`${frontEndAbiLocation2}NftMarketplace.json`,
-	// 	nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
-	// );
+	fs.writeFileSync(
+		`${frontEndAbiLocation2}NftMarketplace.json`,
+		nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
+	);
 
 	const basicNft = await ethers.getContract("BasicNft");
 	fs.writeFileSync(
 		`${frontEndAbiLocation}BasicNft.json`,
 		basicNft.interface.format(ethers.utils.FormatTypes.json)
 	);
-	// fs.writeFileSync(
-	// 	`${frontEndAbiLocation2}BasicNft.json`,
-	// 	basicNft.interface.format(ethers.utils.FormatTypes.json)
-	// );
+	fs.writeFileSync(
+		`${frontEndAbiLocation2}BasicNft.json`,
+		basicNft.interface.format(ethers.utils.FormatTypes.json)
+	);
 }
 
 async function updateContractAddresses() {
@@ -51,6 +51,6 @@ async function updateContractAddresses() {
 		contractAddresses[chainId] = { NftMarketplace: [nftMarketplace.address] };
 	}
 	fs.writeFileSync(frontEndContractsFile, JSON.stringify(contractAddresses));
-	//fs.writeFileSync(frontEndContractsFile2, JSON.stringify(contractAddresses));
+	fs.writeFileSync(frontEndContractsFile2, JSON.stringify(contractAddresses));
 }
 module.exports.tags = ["all", "frontend"];
